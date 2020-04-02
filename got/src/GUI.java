@@ -49,13 +49,13 @@ public class GUI extends JFrame {
 
 		logica = new Logica();
 		// Botones
-		btnCargar = new JButton(properties.getProperty("c_directorio"));
+		btnCargar = new JButton("Cargar Directorio");
 		btnCargar.setBounds(10, 72, 150, 23);
 		btnCargar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String ruta = JOptionPane.showInputDialog(properties.getProperty("cartel"));
+				String ruta = JOptionPane.showInputDialog("Ingrese la ruta del directorio: ");
 
 				if (ruta != null) {
 					try {
@@ -67,7 +67,7 @@ public class GUI extends JFrame {
 					}
 
 				} else {
-					JOptionPane.showMessageDialog(null, properties.getProperty("error"));
+					JOptionPane.showMessageDialog(null, "Por favor, ingrese la ruta");
 					btnCargar.setEnabled(true);
 					btnComenzar.setEnabled(false);
 				}
@@ -76,7 +76,7 @@ public class GUI extends JFrame {
 		});
 		getContentPane().add(btnCargar);
 
-		btnComenzar = new JButton(properties.getProperty("comienzo"));
+		btnComenzar = new JButton("Comenzar");
 		btnComenzar.setEnabled(false);
 		btnComenzar.setBounds(10, 126, 150, 23);
 		btnComenzar.addActionListener(new ActionListener() {
@@ -135,7 +135,7 @@ public class GUI extends JFrame {
 		getContentPane().add(btnEng);
 
 		// Etiqueta del titulo sobre las palabras
-		lblTitulo = new JLabel(properties.getProperty("titulo"));
+		lblTitulo = new JLabel("Las 5 palabras mas usadas en el directorio");
 		lblTitulo.setBounds(206, 11, 311, 14);
 		getContentPane().add(lblTitulo);
 
@@ -187,7 +187,7 @@ public class GUI extends JFrame {
 		textArea_5.setBounds(253, 200, 264, 22);
 		getContentPane().add(textArea_5);
 
-		lblCambiarLenguaje = new JLabel(properties.getProperty("idioma"));
+		lblCambiarLenguaje = new JLabel("Cambiar idioma");
 		lblCambiarLenguaje.setBounds(37, 173, 150, 14);
 		getContentPane().add(lblCambiarLenguaje);
 	}

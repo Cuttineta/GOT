@@ -37,7 +37,7 @@ public class Logica {
 		for (int i = 0; i < archivos.length; i++) {
 
 			try {
-				leerPalabras(archivos[i]);
+				listarPalabras(archivos[i]);
 			} catch (IOException ex) {
 				System.out.println(ex.getMessage());
 			}
@@ -45,7 +45,7 @@ public class Logica {
 
 	}
 
-	private void leerPalabras(File archivo) throws IOException {
+	private void listarPalabras(File archivo) throws IOException {
 		BufferedReader entrada = new BufferedReader(new FileReader(archivo));
 		String renglon = entrada.readLine();
 		while (renglon != null) {
@@ -57,44 +57,23 @@ public class Logica {
 
 		}
 
-		listarPalabras();
+		eliminarSimbolos();
 
 	}
 
-	private void listarPalabras() {
+	private void eliminarSimbolos() {
 
 		List<String> palabrasSinSimbolos = new LinkedList<String>();
 		Iterator<String> it = palabras.iterator();
 
 		while (it.hasNext()) {
 			String act = it.next();
-			// String reemplazo = act.replaceAll("[^\\dA-Za-z·ÈÌÛ˙¡…Õ”⁄Ò—]", "");
-			String reemplazo = eliminarSimbolos(act);
+			String reemplazo = act.replaceAll("[^\\dA-Za-z]", "");
 			palabrasSinSimbolos.add(reemplazo.toLowerCase());
 		}
 
 		palabras = palabrasSinSimbolos;
 
-	}
-
-	private String eliminarSimbolos(String palabra) {
-		String salida = "";
-		for (int i = 0; i < palabra.length(); i++) {
-			int t = palabra.charAt(i);
-			if (esValido(t)) {
-				salida += palabra.charAt(i);
-
-			}
-
-		}
-		return salida;
-
-	}
-
-	private boolean esValido(int ascii) {
-		return ((ascii >= 97 && ascii <= 122) || (ascii >= 65) && (ascii <= 90) || ascii == 225 || ascii == 233
-				|| ascii == 237 || ascii == 243 || ascii == 250 || ascii == 193 || ascii == 201 || ascii == 205
-				|| ascii == 211 || ascii == 218 || ascii == 220 || ascii == 209);
 	}
 
 	public void mapearPalabras() {
